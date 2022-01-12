@@ -1,0 +1,80 @@
+* {
+  background-color: white;
+  color: black;
+  font-family: "Courier New", monospace;
+}
+body {
+  height: 100%;
+}
+.wrapper {
+  min-height: 100%;
+  grid-template-rows: 1fr auto;
+  display: grid;
+  min-width: 100%;
+  gap: 20px;
+  grid-template-areas:
+    "header"
+    "nav"
+    "content"
+    "second-content"
+    "footer";
+}
+.header {
+  grid-area: header;
+}
+.header img {
+  float: left;
+  width: 50px;
+  height: 50px;
+}
+.main-content {
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+}
+#picture-content {
+  margin: auto;
+}
+#picture-content img {
+  border: blue 2px solid;
+  padding: 10px;
+}
+.nav {
+  grid-area: nav;
+}
+nav ul li a {
+  text-decoration: none;
+  border: green 1px dotted;
+}
+nav ul li a:hover {
+  text-decoration: underline;
+}
+.second-content {
+  grid-area: second-content;
+}
+#image-div {
+  width: 300px;
+  height: 100%;
+  background-image: url("https://picsum.photos/300");
+  background-repeat: no-repeat, no-repeat;
+}
+.footer {
+  grid-area: footer;
+  background-color: green;
+}
+
+@media (min-width: 800px) {
+  .wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "header  header"
+      "nav     nav"
+      "content content"
+      "second-content second-content"
+      "footer footer";
+  }
+  nav ul {
+    display: flex;
+    justify-content: space-between;
+  }
+}
