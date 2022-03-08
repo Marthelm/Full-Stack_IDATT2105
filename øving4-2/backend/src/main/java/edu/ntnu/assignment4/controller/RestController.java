@@ -37,6 +37,7 @@ public class RestController {
 
     @PostMapping("/calculation")
     public Equation postCalculation(@RequestBody Equation equation){
+        System.out.println("mapping tried");
         try{
             double sol = service.calculate(equation.getNum1(),equation.getNum2(),equation.getOp());
             equation.setSolution(sol);
@@ -47,5 +48,10 @@ public class RestController {
             e.printStackTrace();
         }
         return equation;
+    }
+
+    @PostMapping("/test")
+    public void postTest(@RequestBody String s){
+        System.out.println(s);
     }
 }

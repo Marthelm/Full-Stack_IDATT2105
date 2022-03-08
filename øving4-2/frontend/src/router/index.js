@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Calculator.vue";
-import About from "../views/FeedBackForm.vue";
+import FeedBackForm from "../views/FeedBackForm.vue";
 
 const routes = [
   {
@@ -9,12 +9,12 @@ const routes = [
     component: Home,
   },
   {
-    path: "/about",
-    name: "About",
+    path: "/feedBack",
+    name: "FeedBack",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: About,
+    component: FeedBackForm,
   },
 ];
 
