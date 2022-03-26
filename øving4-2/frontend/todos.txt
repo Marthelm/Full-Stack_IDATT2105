@@ -1,0 +1,4 @@
+1. Make login feature on page
+2. Make login screening on every page / seperate component
+3. Change backend to correspond to calculations
+4. Change h2 to have 2 tables, 1 table of users and 1 table of calculations
