@@ -6,8 +6,9 @@
       <router-link to="/feedBack">FeedBack</router-link>
     </div>
 
-    <div id="status">
-        <p>{{signedInStatus}}</p>
+    <div v-if="signedInStatus" id="status">
+        {{"Signed in as " + signedInStatus}}
+        <button v-on:click="signout">Sign Out</button>
     </div>
   </div>
 </template>
@@ -47,5 +48,10 @@ computed:{
         }
     },
 },
+methods:{ 
+  signout(){
+    this.$store.commit("updateSignedInStatus", "");
+  },
+}
 };
 </script>

@@ -1,5 +1,8 @@
 <template>
   <div class="wrapper">
+    <h3 v-if="signedInStatus">Welcomme {{signedInStatus}}!</h3>
+    <h3 v-else>Log In to see your calculations!</h3>
+
     <div class="calculator">
       <div class="display">{{ current || "0" }}</div>
       <div @click="clear" class="btn">C</div>
@@ -35,6 +38,8 @@
 
 <script>
 import { sendExpression, getLastExpression } from '../service/api.js';
+import {handleImport} from '../service/importHandling'
+
 export default {
   data() {
     return {
@@ -44,11 +49,13 @@ export default {
       operatorSign: null,
       operatorClicked: false,
       items: [],
+      signedInStatus: this.$store.state.signedInStatus,
     };
   },
   methods: {
     clear() {
       this.current = "";
+      handleImport()
     },
     sign() {
       this.current =
