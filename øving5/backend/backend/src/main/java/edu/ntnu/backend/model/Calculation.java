@@ -6,14 +6,28 @@ public class Calculation {
     private double num2;
     private char op;
     private double sol;
+    private String username;
 
-    public Calculation(int id, double num1, double num2, char op, double sol) {
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Calculation(){
+
+    }
+    public Calculation(int id, double num1, double num2, char op, double sol,String username) {
         this.id = id;
         this.num1 = num1;
         this.num2 = num2;
         this.op = op;
         this.sol = sol;
+        this.username = username;
     }
+
 
     public int getId() {
         return id;

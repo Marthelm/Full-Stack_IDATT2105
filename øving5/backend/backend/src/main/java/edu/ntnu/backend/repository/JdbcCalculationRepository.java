@@ -1,22 +1,39 @@
 package edu.ntnu.backend.repository;
 
 import edu.ntnu.backend.model.Calculation;
+import edu.ntnu.backend.model.CalculationMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class JdbcCalculationRepository implements CalculationRepository{
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     @Override
     public int save(Calculation calculation) {
-        return 0;
+        return jdbcTemplate.update("INSERT INTO calculations (id,num1,num2,op,sol,user) VALUES(?,?,?,?,?)",
+                new Object[] { calculation.getId(), calculation.getNum1(),calculation.getNum2(),calculation.getOp(),calculation.getSol(),calculation.getUsername() });
     }
 
     @Override
-    public List<Calculation> findAll() {
-        return null;
+    public List<Calculation> getAllCalculations() {
+        String SQL = "select * from calculations";
+        return jdbcTemplate.query(SQL,new CalculationMapper());
     }
 
     @Override
-    public List<Calculation> findAllByUserName() {
-        return null;
+    public List<Calculation> findAllByUsername(String username) {
+        try {
+            String SQL = "SELECT * FROM calculations WHERE username= '" + username + "'";
+            return jdbcTemplate.query(SQL, new CalculationMapper());
+        } catch (IncorrectResultSizeDataAccessException e) {
+            return null;
+        }
     }
 }

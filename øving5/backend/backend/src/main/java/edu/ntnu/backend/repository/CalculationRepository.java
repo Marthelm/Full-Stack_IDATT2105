@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface CalculationRepository {
     int save(Calculation calculation);
-    List<Calculation> findAll();
-    List<Calculation> findAllByUserName();
+    List<Calculation> findAllByUsername(String username);
+    List<Calculation> getAllCalculations();
 
 
 
