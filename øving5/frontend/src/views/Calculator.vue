@@ -37,9 +37,7 @@
 </template>
 
 <script>
-import { sendExpression, getLastExpression } from '../service/api.js';
-import {handleImport} from '../service/importHandling'
-
+import {getAllUsers} from '../service/importHandling.js'
 export default {
   data() {
     return {
@@ -55,7 +53,6 @@ export default {
   methods: {
     clear() {
       this.current = "";
-      handleImport()
     },
     sign() {
       this.current =
@@ -105,13 +102,14 @@ export default {
       this.setPrevious();
     },
     async equal() {
-      const temp = this.current;
-      const ex = await sendExpression(this.previous, temp, this.operatorSign);
-      this.current = ex.data.solution;
-      const result = await getLastExpression();
-      this.items.push({ message: result });
-      console.log(ex.data.solution);
-      console.log(result);
+      //const temp = this.current;
+      //const ex = await sendExpression(this.previous, temp, this.operatorSign);
+      //this.current = ex.data.solution;
+      //const result = await getLastExpression();
+      //this.items.push({ message: result });
+      const ex = await getAllUsers;
+      console.log(ex.username);
+    
       this.previous = null;
     }
   },

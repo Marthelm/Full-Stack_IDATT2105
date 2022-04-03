@@ -50,10 +50,23 @@ public class CalculationController {
         }
     }
 
+    @GetMapping("/calculations/{username}")
+    public ResponseEntity<List<Calculation>> getCalculationsByUsername(@PathVariable("username") String username) {
+        try {
+            List<Calculation> calculations = calculationRepository.findAllByUsername(username);
+            if (calculations.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(calculations, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/calculations")
     public ResponseEntity<String> createCalculation(@RequestBody Calculation calculation) {
         try {
-            calculationRepository.save(new Calculation(calculation.getId(),calculation.getNum1(),calculation.getNum2(),calculation.getOp(),calculation.getSol(),calculation.getUsername()));
+            calculationRepository.save(new Calculation(calculation.getNum1(),calculation.getNum2(),calculation.getOp(),calculation.getSol(),calculation.getUsername()));
             return new ResponseEntity<>("Calculation was created successfully.", HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

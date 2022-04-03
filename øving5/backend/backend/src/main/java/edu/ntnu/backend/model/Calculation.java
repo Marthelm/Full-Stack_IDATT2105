@@ -19,7 +19,16 @@ public class Calculation {
     public Calculation(){
 
     }
-    public Calculation(int id, double num1, double num2, char op, double sol,String username) {
+
+    public Calculation(double num1, double num2, char op, double sol, String username) {
+        this.num1 = num1;
+        this.num2 = num2;
+        this.op = op;
+        this.sol = sol;
+        this.username = username;
+    }
+
+    public Calculation(int id, double num1, double num2, char op, double sol, String username) {
         this.id = id;
         this.num1 = num1;
         this.num2 = num2;
