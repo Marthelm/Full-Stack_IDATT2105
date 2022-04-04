@@ -51,6 +51,7 @@ computed:{
 methods:{ 
   signout(){
     this.$store.commit("updateSignedInStatus", "");
+    this.$router.push('/signin');
   },
 }
 };

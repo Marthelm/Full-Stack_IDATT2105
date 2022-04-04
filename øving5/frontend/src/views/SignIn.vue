@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSignIn">
+  <form @submit.prevent="handleSignIn" v-if="!signedInStatus" >
     <label>Username:</label>
     <input v-model="username" required name="username" />
     <div v-if="usernameError" class="error">{{ nameError }}</div>
@@ -12,6 +12,7 @@
       <button>Send FeedBack</button>
     </div>
   </form>
+  <p v-else>Already signed in</p>
   <div class="status">{{ status }}</div>
 </template>
 <script>
@@ -25,6 +26,7 @@ export default {
       usernameError: null,
       passwordError: null,
       status: null,
+      signedInStatus: this.$store.state.signedInStatus,
     };
   },
   methods: {
@@ -39,6 +41,7 @@ export default {
         if(user.data.username == typedUsername && user.data.password == typedPassword){
           console.log("match in system")
           this.updateSignedInStatus(user.data.username)
+          this.$router.push('/');
         }
       }
     },

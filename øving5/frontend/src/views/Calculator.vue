@@ -3,7 +3,7 @@
     <h3 v-if="signedInStatus">Welcomme {{signedInStatus}}!</h3>
     <h3 v-else>Log In to see your calculations!</h3>
 
-    <div class="calculator">
+    <div class="calculator" v-if="signedInStatus">
       <div class="display">{{ current || "0" }}</div>
       <div @click="clear" class="btn">C</div>
       <div @click="sign" class="btn">+/-</div>
@@ -25,7 +25,7 @@
       <div @click="dot" class="btn">.</div>
       <div @click="equal" class="btn operator">=</div>
     </div>
-    <div class="log">
+    <div class="log" v-if="signedInStatus">
       <h4>Log of Operations</h4>
       <ul id="example-1">
         <li v-for="item in items" :key="item.message" class="list-item">
@@ -115,7 +115,18 @@ export default {
      console.log(calculcation.data)
     
       //this.previous = null;
-    }
+    },
+    async checkStatus(){
+      const calculations = await getAllCalculationsByUser(this.signedInStatus);
+      const d =  calculations.data;
+      console.log(d)
+      for(let key in d){
+        this.items.push({message:d[key].num1 + " " + d[key].op + " " + d[key].num2 + " = " + d[key].sol});
+      }
+    },
+  },
+  beforeMount(){
+    this.checkStatus();
   },
 };
 </script>
