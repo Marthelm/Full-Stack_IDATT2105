@@ -37,7 +37,9 @@
 </template>
 
 <script>
-import {getAllUsers,getAllCalculationsByUser} from '../service/importHandling.js'
+import {sendCalculation} from '../service/exportHandling.js'
+import {getAllCalculationsByUser} from '../service/importHandling.js'
+import {calculateExpression} from '../service/calculationHandler.js'
 export default {
   data() {
     return {
@@ -102,19 +104,12 @@ export default {
       this.setPrevious();
     },
     async equal() {
-      //const temp = this.current;
-      //const ex = await sendExpression(this.previous, temp, this.operatorSign);
-      //this.current = ex.data.solution;
-      //const result = await getLastExpression();
-      //this.items.push({ message: result });
-      //const ex = getAllUsers;
-      //console.log(ex);
-    const calculcation =  await getAllCalculationsByUser("trygve");
-     const users  = await getAllUsers()
-     console.log(users.data[0].username)
-     console.log(calculcation.data)
-    
-      //this.previous = null;
+      const temp = this.current;
+      const solution = calculateExpression(this.previous,temp,this.operatorSign);
+      this.items.push({ message: this.previous + " " + this.operatorSign + " " + temp + " = " + solution});
+      await sendCalculation(parseFloat(this.previous),parseFloat(temp),this.operatorSign,parseFloat(solution),this.signedInStatus)
+      this.current =  solution;
+      this.previous = null;
     },
     async checkStatus(){
       const calculations = await getAllCalculationsByUser(this.signedInStatus);
