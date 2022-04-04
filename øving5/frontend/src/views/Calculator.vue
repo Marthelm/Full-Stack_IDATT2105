@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import {test} from '../service/importHandling.js'
+import {getAllUsers,getAllCalculationsByUser} from '../service/importHandling.js'
 export default {
   data() {
     return {
@@ -109,8 +109,10 @@ export default {
       //this.items.push({ message: result });
       //const ex = getAllUsers;
       //console.log(ex);
-     const tep  = await test()
-     console.log(tep.data)
+    const calculcation =  await getAllCalculationsByUser("trygve");
+     const users  = await getAllUsers()
+     console.log(users.data[0].username)
+     console.log(calculcation.data)
     
       //this.previous = null;
     }

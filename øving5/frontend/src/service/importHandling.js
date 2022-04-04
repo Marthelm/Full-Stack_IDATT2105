@@ -1,20 +1,18 @@
 import axios from "axios";
 
 export function getAllUsers() {
-  axios.get("http://localhost:8080/api/users/trygve").then((answer) => {
-    return answer.data;
-  });
+  const res = axios.get("http://localhost:8080/api/users");
+  return res;
 }
 
-export function test() {
-  const res = axios.get("http://localhost:8080/api/users/trygve");
+export function getUser(username) {
+  const s = "http://localhost:8080/api/users/" + username;
+  const res = axios.get(s);
   return res;
 }
 
 export function getAllCalculationsByUser(username) {
-  return axios
-    .get("http://localhost:8080/api/users/" + { username })
-    .then((answer) => {
-      return answer.data;
-    });
+  let s = "http://localhost:8080/api/calculations/" + username;
+  const res = axios.get(s);
+  return res;
 }
