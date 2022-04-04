@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import {getAllUsers} from '../service/importHandling.js'
+import {test} from '../service/importHandling.js'
 export default {
   data() {
     return {
@@ -107,10 +107,12 @@ export default {
       //this.current = ex.data.solution;
       //const result = await getLastExpression();
       //this.items.push({ message: result });
-      const ex = await getAllUsers;
-      console.log(ex.username);
+      //const ex = getAllUsers;
+      //console.log(ex);
+     const tep  = await test()
+     console.log(tep.data)
     
-      this.previous = null;
+      //this.previous = null;
     }
   },
 };
