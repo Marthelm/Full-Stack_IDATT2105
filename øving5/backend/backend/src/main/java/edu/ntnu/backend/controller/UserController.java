@@ -50,11 +50,14 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<String> createUser(@RequestBody User user) {
-        System.out.println("this far");
+    public ResponseEntity<String> doLogin(@RequestBody User user) {
         try {
-            userRepository.save(new User(user.getUsername(),user.getPassword()));
-            return new ResponseEntity<>("User was created successfully.", HttpStatus.CREATED);
+            User u = userRepository.findUserByUsername(user.getUsername());
+            if(u.getUsername().equals(user.getUsername()) && u.getPassword().equals(user.getPassword())){
+                return new ResponseEntity<>("sucess", HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>("failed",HttpStatus.NO_CONTENT);
+            }
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

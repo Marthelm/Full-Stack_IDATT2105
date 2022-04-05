@@ -16,7 +16,7 @@
   <div class="status">{{ status }}</div>
 </template>
 <script>
-  import {getUser} from "../service/importHandling.js";
+  import {doLogin} from "../service/importHandling.js";
 export default {
   state:{
   },
@@ -33,18 +33,29 @@ export default {
     async handleSignIn(submitEvent) {
       let typedUsername = submitEvent.target.elements.username.value;
       let typedPassword = submitEvent.target.elements.password.value;
-      const user = await getUser(typedUsername);
-      console.log(user.data)
-      if(user.data == null){
-        console.log("user not in system")
-      }else{
-        if(user.data.username == typedUsername && user.data.password == typedPassword){
-          console.log("match in system")
-          this.updateSignedInStatus(user.data.username)
+
+
+      const loginRequest = { username:typedUsername, password: typedPassword };
+      const loginResponse = await doLogin(loginRequest);
+      if(loginResponse == "sucess"){
+        console.log("match in system");
+          this.updateSignedInStatus(typedUsername);
           this.$router.push('/');
-        }
+      }else{
+        console.log("user not in system");
       }
-    },
+
+      //const user = await getUser(typedUsername);
+      //console.log(user.data)
+      //if(user.data == null){
+       // console.log("user not in system")
+      //}else{
+        //if(user.data.username == typedUsername && user.data.password == typedPassword){
+         // console.log("match in system")
+         // this.updateSignedInStatus(user.data.username)
+         // this.$router.push('/');
+       // }
+      },
     updateSignedInStatus(e) {
       this.$store.commit("updateSignedInStatus", e);
     }
