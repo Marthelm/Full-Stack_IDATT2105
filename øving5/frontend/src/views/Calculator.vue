@@ -27,8 +27,8 @@
     </div>
     <div class="log" v-if="signedInStatus">
       <h4>Log of Operations</h4>
-      <ul id="example-1">
-        <li v-for="item in items" :key="item.message" class="list-item">
+      <ul id="example-1" v-if="signedInStatus">
+        <li v-for="item in items" :key="item.message" class="list-item" >
           {{ item.message }}
         </li>
       </ul>

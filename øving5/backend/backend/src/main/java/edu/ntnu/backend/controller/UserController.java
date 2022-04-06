@@ -5,6 +5,7 @@ import edu.ntnu.backend.model.User;
 import edu.ntnu.backend.repository.CalculationRepository;
 import edu.ntnu.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
+@EnableAutoConfiguration
 public class UserController {
 
     @Autowired
