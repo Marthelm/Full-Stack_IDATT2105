@@ -1,11 +1,6 @@
 import axios from "axios";
 import https from "https";
 
-export function getAllUsers() {
-  const res = axios.get("http://localhost:8080/api/users");
-  return res;
-}
-
 const agent = new https.Agent({
   rejectUnauthorized: false,
 });
@@ -28,12 +23,6 @@ export function doLogin(loginRequest) {
     .catch((err) => {
       console.log(err);
     });
-}
-
-export function getUser(username) {
-  const s = "http://localhost:8080/api/users/" + username;
-  const res = axios.get(s, config);
-  return res;
 }
 
 export function getAllCalculationsByUser(username) {

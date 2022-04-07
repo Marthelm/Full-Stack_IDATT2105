@@ -8,7 +8,6 @@ import java.sql.SQLException;
 public class CalculationMapper implements RowMapper<Calculation> {
     @Override
     public Calculation mapRow(ResultSet rs, int rowNum) throws SQLException {
-        System.out.println("this far");
         Calculation calculation = new Calculation();
         calculation.setId(rs.getInt("id"));
         calculation.setNum1(rs.getDouble("num1"));

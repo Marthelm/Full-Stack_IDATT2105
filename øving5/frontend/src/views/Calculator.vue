@@ -107,14 +107,15 @@ export default {
       const temp = this.current;
       const solution = calculateExpression(this.previous,temp,this.operatorSign);
       this.items.push({ message: this.previous + " " + this.operatorSign + " " + temp + " = " + solution});
-      await sendCalculation(parseFloat(this.previous),parseFloat(temp),this.operatorSign,parseFloat(solution),this.signedInStatus)
+      if(this.signedInStatus){
+        await sendCalculation(parseFloat(this.previous),parseFloat(temp),this.operatorSign,parseFloat(solution),this.signedInStatus)
+      }
       this.current =  solution;
       this.previous = null;
     },
     async checkStatus(){
       const calculations = await getAllCalculationsByUser(this.signedInStatus);
       const d =  calculations.data;
-      console.log(d)
       for(let key in d){
         this.items.push({message:d[key].num1 + " " + d[key].op + " " + d[key].num2 + " = " + d[key].sol});
       }
