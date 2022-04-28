@@ -132,6 +132,7 @@ export default {
 .wrapper {
   display: flex;
   flex-direction: column;
+  border-radius: 5px;
 }
 .calculator {
   margin: 0 auto;
@@ -140,11 +141,13 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(50px, auto);
+  border-radius: 5px;
 }
 .display {
   grid-column: 1 / 5;
-  background-color: #20639b;
-  color: white;
+  background-color: #93b413;
+  color: #000000;
+  border-radius: 5px;
 }
 .zero {
   grid-column: 1 / 3;
@@ -152,9 +155,10 @@ export default {
 .btn {
   background-color: #f2f2f2;
   border: 1px solid rgb(93, 91, 91);
+  border-radius: 5px;
 }
 .operator {
-  background-color: #ed553b;
+  background-color: #e87808;
   color: white;
 }
 .log {
@@ -162,8 +166,8 @@ export default {
   min-height: 100px;
   margin: 0 auto;
   margin-top: 40px;
-  background-color: #3caea3;
-  color: black;
+  background-color: #4d0909;
+  color: white;
 }
 .list-item {
   text-align: left;
